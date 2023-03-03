@@ -71,7 +71,7 @@ fun ShoppingScreen(
                 modifier = Modifier
                     .width((screenWidth - 30).dp)
                     .height(45.dp),
-                colors = ButtonDefaults.buttonColors(Color.Red),
+                colors = ButtonDefaults.buttonColors(MaterialTheme.colorScheme.error),
                 shape = RectangleShape
             ) {
                 Text(text = "Delete shopping list")
@@ -120,7 +120,6 @@ fun AddingElements(viewModel: ShoppingViewModel){
             ) {
                 Text(
                     text = "-",
-                    color = Color.White,
                     fontWeight = FontWeight.Bold,
                     fontSize = 30.sp
                 )
