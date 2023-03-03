@@ -10,3 +10,4 @@
 ## Other input:
 - Color bad 
 - Round corner of delete list
+- Detailed amount: units
