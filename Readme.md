@@ -12,3 +12,4 @@
 - Round corner of delete list
 - Detailed amount: units
 - Add text editable amounts
+- Add extra step on list deletion
