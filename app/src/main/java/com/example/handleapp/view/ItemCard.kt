@@ -34,7 +34,7 @@ fun ItemCard(
         ) {
             Button(
                 onClick = {viewModel.deleteItem(item)},
-                colors = ButtonDefaults.buttonColors(Color.Red),
+                colors = ButtonDefaults.buttonColors(MaterialTheme.colorScheme.error),
                 modifier = Modifier
                     .size(25.dp)
                     .align(Alignment.End),

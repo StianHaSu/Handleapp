@@ -5,6 +5,7 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -28,6 +29,7 @@ fun ShoppingScreen(
     val shoppingState = viewModel.shoppingState.collectAsState()
     val config = LocalConfiguration.current
     val screenWidth = config.screenWidthDp
+    val focus = LocalFocusManager.current
 
     Scaffold(
         topBar = {SmallTopAppBar(
@@ -47,6 +49,11 @@ fun ShoppingScreen(
                 value = viewModel.newItem,
                 onValueChange = { newValue -> viewModel.updateCurrentItem(newValue) },
                 placeholder = { Text(text = "Item name") },
+                keyboardActions = KeyboardActions(onDone = {
+                    viewModel.addCurrentItem()
+                    focus.clearFocus()
+                }),
+                singleLine = true
             )
 
             Spacer(modifier = Modifier.height(10.dp))
@@ -64,7 +71,7 @@ fun ShoppingScreen(
                 modifier = Modifier
                     .width((screenWidth - 30).dp)
                     .height(45.dp),
-                colors = ButtonDefaults.buttonColors(Color.Red),
+                colors = ButtonDefaults.buttonColors(MaterialTheme.colorScheme.error),
                 shape = RectangleShape
             ) {
                 Text(text = "Delete shopping list")
@@ -113,7 +120,6 @@ fun AddingElements(viewModel: ShoppingViewModel){
             ) {
                 Text(
                     text = "-",
-                    color = Color.White,
                     fontWeight = FontWeight.Bold,
                     fontSize = 30.sp
                 )

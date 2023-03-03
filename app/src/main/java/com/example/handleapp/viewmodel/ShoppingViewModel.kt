@@ -34,6 +34,7 @@ class ShoppingViewModel(context: Context): ViewModel() {
     }
 
     fun addCurrentItem() {
+        if (newItem.isBlank())return;
         viewModelScope.launch {
             val newShoppingItem = ShoppingListItem( item =  newItem, quantity = quantity)
             localDatabase.insertShoppingItem(newShoppingItem)
