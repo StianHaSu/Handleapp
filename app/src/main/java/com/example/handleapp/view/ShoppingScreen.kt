@@ -34,7 +34,7 @@ fun ShoppingScreen(
     Scaffold(
         topBar = {SmallTopAppBar(
             title = {
-                Text(text = "Shopping list")
+                Text(text = "Extreme shopping list")
             }, colors = TopAppBarDefaults.smallTopAppBarColors(MaterialTheme.colorScheme.inversePrimary)
         ) }
 
