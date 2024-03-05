@@ -40,7 +40,7 @@ fun ItemCard(
                     .align(Alignment.End),
                 contentPadding = PaddingValues(0.dp)
             ) {
-                Text(text = "X")
+                Text(text = "XXX")
             }
             Text(
                 text = item.item,
