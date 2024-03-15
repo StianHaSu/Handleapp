@@ -19,12 +19,13 @@ import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.handleapp.viewmodel.ShoppingViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ShoppingScreen(
-    viewModel: ShoppingViewModel
+    viewModel: ShoppingViewModel = viewModel()
 ){
     val shoppingState = viewModel.shoppingState.collectAsState()
     val config = LocalConfiguration.current

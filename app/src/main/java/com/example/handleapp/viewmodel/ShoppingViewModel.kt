@@ -10,13 +10,18 @@ import androidx.compose.ui.text.input.TextFieldValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.room.util.copy
-import com.example.handleapp.repository.localdatabase.AppDataContainer
+
+import com.example.handleapp.repository.localdatabase.ShoppingListDatabase
 import com.example.handleapp.repository.localdatabase.ShoppingListItem
+import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class ShoppingViewModel(context: Context): ViewModel() {
-    private val localDatabase = AppDataContainer(context).shoppingRepository
+@HiltViewModel
+class ShoppingViewModel @Inject constructor(@ApplicationContext context: Context): ViewModel() {
+    private val localDatabase = ShoppingListDatabase.getDatabase(context).shoppingDao()
     private var _shoppingState = MutableStateFlow(ShoppingUiState())
     val shoppingState = _shoppingState.asStateFlow()
 
@@ -42,17 +47,16 @@ class ShoppingViewModel(context: Context): ViewModel() {
             quantity = 1
 
 
-            _shoppingState.update { ShoppingUiState(localDatabase.getAllItemsStream().first()) }
+            _shoppingState.update { ShoppingUiState(localDatabase.getShoppingList().first()) }
         }
     }
 
     fun getAllItems() {
         viewModelScope.launch {
             _shoppingState.update {
-                ShoppingUiState(localDatabase.getAllItemsStream().first())
+                ShoppingUiState(localDatabase.getShoppingList().first())
             }
         }
-
     }
 
     fun deleteShoppingList() {
