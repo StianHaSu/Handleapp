@@ -14,7 +14,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.example.handleapp.ui.theme.HandleappTheme
 import com.example.handleapp.view.ShoppingScreen
 import com.example.handleapp.viewmodel.ShoppingViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,7 +27,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    ShoppingScreen(ShoppingViewModel(LocalContext.current))
+                    ShoppingScreen()
                 }
             }
         }
